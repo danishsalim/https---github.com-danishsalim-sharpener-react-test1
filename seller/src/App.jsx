@@ -17,11 +17,11 @@ function App() {
         productName:name,
         productCategory:category,
       })
-      console.log(data)
   }
 
   return (
     <>
+    <h1>Seller Page</h1>
     <Input dataHandler={submitHandler}/>
     <Products product={data}/>
     </>

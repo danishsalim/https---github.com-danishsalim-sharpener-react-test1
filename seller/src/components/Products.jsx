@@ -5,6 +5,10 @@ const Products = (props) => {
   const [foodItems,setFoodItems] = useState([])
   const [skinCare,setSkinCare] = useState([])
   useEffect(() => {
+    if(localStorage.getItem(props.product.productId))
+    {
+      return alert('product with given id already listed')
+    }
     props.product.productId?localStorage.setItem(props.product.productId, JSON.stringify(props.product)):"";
     if (props.product.productCategory === 'electronics') {
       setElectronicsItems((prev) => [...prev, props.product]);
@@ -28,36 +32,36 @@ const Products = (props) => {
   }
   return (
     <>
-    <h1>Products:</h1>
-    <h2>Electronics Items</h2>
+    <h2>Products:</h2>
+    <h3>Electronics Items :</h3>
     {
       electronicsItems.map((item,idx)=>(
         <ul key={idx}>
           <li>
-            <span>{item.productPrice} {item.productCategory} {item.productName}</span>
-            <button onClick={()=>deleteHandler(item.productId,electronicsItems)}>Delete</button>
+            <span>₹ {item.productPrice} - {item.productCategory} - {item.productName}</span>
+            <button onClick={()=>deleteHandler(item.productId,electronicsItems)}>Delete Product</button>
           </li>
         </ul>
       ))
     }
-    <h2>Food Items</h2>
+    <h3>Food Items :</h3>
     {
       foodItems.map((item,idx)=>(
         <ul key={idx}>
           <li>
-            <span>{item.productPrice} {item.productCategory} {item.productName}</span>
-            <button onClick={()=>deleteHandler(item.productId,foodItems)}>Delete</button>
+            <span>₹ {item.productPrice} - {item.productCategory} - {item.productName}</span>
+            <button onClick={()=>deleteHandler(item.productId,foodItems)}>Delete Product</button>
           </li>
         </ul>
       ))
     }
-    <h2>Skin Care</h2>
+    <h3>Skin Care :</h3>
     {
       skinCare.map((item,idx)=>(
         <ul key={idx}>
           <li>
-            <span>{item.productPrice} - {item.productCategory} - {item.productName}
-            <button onClick={()=>deleteHandler(item.productId,skinCare)}>Delete</button>
+            <span>₹ {item.productPrice} - {item.productCategory} - {item.productName}
+            <button onClick={()=>deleteHandler(item.productId,skinCare)}>Delete Product</button>
           </span></li>
         </ul>
       ))
